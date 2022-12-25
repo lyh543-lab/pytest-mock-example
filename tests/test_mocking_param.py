@@ -19,6 +19,7 @@ def test_call_with_mock_object(mocker: MockFixture):
     request_ten_times(mocked_request)
 
     mocked_request.assert_has_calls([
+        # here you should use `call.get()` instead of `call()` to assert `mock.get()` has been called
         mocker.call.get(index) for index in range(10)
     ])
 
