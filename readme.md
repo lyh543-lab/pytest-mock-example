@@ -1,5 +1,7 @@
 ## pytest-mock-example
 
+Example project of using `pytest-mock`.
+
 Usage:
 
 ```
