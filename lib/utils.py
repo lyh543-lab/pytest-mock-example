@@ -1,5 +1,4 @@
-import os
-from os import getlogin
+from os import getlogin, curdir
 
 
 class HostUtils:
@@ -10,4 +9,4 @@ class HostUtils:
         return self._username
 
     def get_current_path(self):
-        return os.curdir
+        return curdir

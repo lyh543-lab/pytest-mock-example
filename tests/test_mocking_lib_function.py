@@ -7,12 +7,15 @@ from lib.utils import HostUtils
 
 
 def test_get_greeting_string_from_import_function(mocker: MockFixture):
+    # you should mock `app.greetings.getlogin` instead of `os.login`
     mocked_getlogin = mocker.patch('app.greetings.getlogin', return_value='user')
     assert get_greeting_string_from_import_function() == 'Greetings, user'
 
     mocked_getlogin.assert_has_calls([
         mocker.call(),
     ])
+    # you can also use assert_called_with
+    mocked_getlogin.assert_called_with()
 
 
 # decorator-style of mocker.patch
@@ -23,11 +26,10 @@ def test_get_greeting_string_from_import_function__decorator_style(mocked_get_lo
     mocked_get_login.assert_has_calls([
         call(),
     ])
-    # you can also use assert_called_with
-    mocked_get_login.assert_called_with()
 
 
 def test_get_greeting_string_from_import_module(mocker: MockFixture):
+    # here you can mock either `app.greetings.getlogin` or `os.login`
     mocked_getlogin = mocker.patch('os.getlogin', return_value='user')
     assert get_greeting_string_from_import_module() == 'Greetings, user'
 
